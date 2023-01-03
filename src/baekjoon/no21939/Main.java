@@ -14,6 +14,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         /*
          * 문제 : 문제 추천 시스템 Version 1
+         * 
+         * Point : TreeSet (중복된 값 저장 x, 정렬된 상로 관리)
+         * 
+         * 
+         * node 만듥,compareTo만들어서 treeSet에저장 하는 식으로 개선해보자.
          */
 
          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
