@@ -3,11 +3,10 @@ package baekjoon.no21939;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
 public class Main {
 
@@ -29,12 +28,13 @@ public class Main {
 
 
          Map<Integer, Integer> map = new HashMap<>();
+         TreeSet<Pair> tree = new TreeSet<>();
 
          for(int i=0; i<n; i++){
             st = new StringTokenizer(br.readLine());
             int p = Integer.parseInt(st.nextToken());
             int l = Integer.parseInt(st.nextToken());
-
+            tree.add(new Pair(l,p));
             map.put(p, l);
          }
 
@@ -47,47 +47,40 @@ public class Main {
             String command = st.nextToken();
 
             if(command.equals("recommend")){
-                // List<Integer> keyList = new ArrayList<>(map.keySet());
-                // keyList.sort((s1, s2)-> s1.compareTo(s2));
-                int answer = 0;
-                int min = Integer.MAX_VALUE;
-                int max = Integer.MIN_VALUE;
 
                 int x = Integer.parseInt(st.nextToken());
                 if(x==1){
-                    for(Integer key : map.keySet()){
-                        if(map.get(key)>max){
-                            answer = key;
-                            max = map.get(key);
-                        }else if(map.get(key)==max){
-                            if(key>answer){
-                                answer = key;
-                            }
-                        }
-                    }
-                    System.out.println(answer);
+                    System.out.println(tree.last().second);
                 }else{
-                    for(Integer key : map.keySet()){
-                        if(map.get(key)<min){
-                            answer = key;
-                            min = map.get(key);
-                        }else if(map.get(key) == min){
-                            if(key<answer){
-                                answer=key;
-                            }
-                        }
-                    }
-                    System.out.println(answer);
+                    System.out.println(tree.first().second);
                 }
             }else if(command.equals("solved")){
                 int p = Integer.parseInt(st.nextToken());
+                int l = map.get(p);
+                tree.remove(new Pair(l,p));
                 map.remove(p);
             }else if(command.equals("add")){
                 int p = Integer.parseInt(st.nextToken());
                 int l = Integer.parseInt(st.nextToken());
-
+                tree.add(new Pair(l,p));
                 map.put(p, l);
             }
          }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int first;
+        int second;
+        public Pair() { first = second = 0; }
+        public Pair(int a, int b) {
+            first = a;
+            second = b;
+        }
+        
+        @Override
+        public int compareTo(Pair o) {
+            if(this.first != o.first) return this.first - o.first;
+            return this.second - o.second;
+        }
     }
 }
