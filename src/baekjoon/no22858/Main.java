@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+    /*
+     * 원상 복구 (small) 성공
+     * 숟수다단ㅅ수순 ㄱ구궇구혀현
+     */
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
