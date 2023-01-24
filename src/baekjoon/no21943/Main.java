@@ -40,5 +40,50 @@ public class Main {
      p = Integer.parseInt(st.nextToken());
      q = Integer.parseInt(st.nextToken());
 
-   } 
+     dfs(0);
+     System.out.println(answer);
+   }
+
+   static void dfs(int cnt) {
+      if(cnt == n) {
+          dfs2(0);
+          return;
+      }
+
+      for(int i=0;i<n;i++){
+          if(used[i]) continue;
+          used[i] = true;
+          choose[cnt] = arr[i];
+          dfs(cnt + 1);
+          used[i] = false;
+      }
+  }
+
+  static void dfs2(int cnt) {
+      if(cnt == n - 1) {
+          int idx = -1;
+          values[++idx] = choose[0];
+          for(int i=1;i<n;i++) {
+              if(operator[i - 1] == 1) values[++idx] = choose[i];
+              else values[idx] += choose[i];
+          }
+          long curValue = 1;
+          for(int i=0;i<=idx;i++) curValue *= values[i];
+          answer = Math.max(answer, curValue);
+          return;
+      }
+
+      if(p > 0) {
+          p --;
+          operator[cnt] = 0;
+          dfs2(cnt + 1);
+          p ++;
+      }
+      if(q > 0) {
+          q --;
+          operator[cnt] = 1;
+          dfs2(cnt + 1);
+          q ++;
+      }
+  }
 }
