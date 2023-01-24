@@ -26,11 +26,5 @@ public class Main {
      int p = Integer.parseInt(st.nextToken());
      int q = Integer.parseInt(st.nextToken());
 
-
-     
-
-     
-
-
    } 
 }
