@@ -1,3 +1,5 @@
+package baekjoon
+
 import java.util.regex.Pattern
 
 class no25304 {
