@@ -27,7 +27,7 @@ fun binarySearch(k: Long, n: Long): Long {
 
         lanCable.forEach { count += it / mid }
 
-        if ( count < n) maximumLan = mid - 1
+        if ( count < n) maximumLan = mid
         else minimumLan = mid + 1
     }
     return minimumLan-1
