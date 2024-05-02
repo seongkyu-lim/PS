@@ -1,10 +1,8 @@
 
 
-fun main(args: Array<String>) {
+fun main() {
     val input = readLine()!!.toLong()
-    binarySearch(input)
-
-
+    print(binarySearch(input))
 }
 
 
@@ -18,7 +16,13 @@ fun binarySearch(input: Long): Long {
         var cnt: Long = 0
         mid = (minimumNum + maximumNum) / 2
         
-        // TODO: calculate cnt
+        var value = 0
+        while (value <= input) {
+            value *= value
+            cnt++
+        }
+        
+        cnt += if (input-value > ((value*value)-input)) ((value*value) - input) else (input-value) 
 
         if (cnt <= optimalCnt) {
             optimalCnt = cnt
