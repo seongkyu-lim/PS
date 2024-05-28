@@ -32,13 +32,6 @@ fun check(input: String): String {
             // println("deque : ${deque}")
         }
         // println("========== check finish ===========")
+        if (deque.count()!=0) return "no"
         return "yes"
 }
-
-/*
-반례
-
-([)].
-.
-
- */
